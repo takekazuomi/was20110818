@@ -1,9 +1,19 @@
-Windows Azure Storage Insert or Replace/Merge sample code
-==========
-//BUILD と同時に公開になったWindows Azure Storage Insert or Replace/Merge のサンプルコードです。
-動作を見るために簡単に書いているので、変なコメントが残っています。
+Windows Azure Table x-ms-version: 2011-08-18 サンプル
+=========
 
-## サンプルの動かしかた
+
+
+upsert
+==========
+
+Windows Azure Storage Insert or Replace/Merge sample code.
+
+//BUILD/ と同時に公開になったWindows Azure Storage Insert or Replace/Merge のサンプルコードです。  
+動作を見るために簡単に書いているので、変なコメントが残っています。
+SDK1.4/SDK1.5の両方で動きます。
+
+
+サンプルの動かしかた
 ----------
 
 例：
@@ -104,11 +114,11 @@ Mergeになるか、Replaceになるかは、SaveChangesOptionで決まります
 参考リンク
 ---------- 
 
-http://blogs.msdn.com/b/windowsazure/archive/2011/09/14/just-announced-build-new-windows-azure-toolkit-for-windows-8-windows-azure-sdk-1-5-geo-replication-for-azure-storage-and-more.aspx
+* http://blogs.msdn.com/b/windowsazure/archive/2011/09/14/just-announced-build-new-windows-azure-toolkit-for-windows-8-windows-azure-sdk-1-5-geo-replication-for-azure-storage-and-more.aspx
 
-Insert Or Replace Entity http://msdn.microsoft.com/en-us/library/hh452242.aspx
+* [Insert Or Replace Entity](http://msdn.microsoft.com/en-us/library/hh452242.aspx)
 
-Insert Or Merge Entity http://msdn.microsoft.com/en-us/library/hh452241.aspx
+* [Insert Or Merge Entity](http://msdn.microsoft.com/en-us/library/hh452241.aspx)
 
 
 
