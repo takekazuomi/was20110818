@@ -29,6 +29,7 @@ Insert or Mergeを実行
 内容確認は、VSなどでやったほうが便利です。
 
 
+
 要点１：ヘッダーでバージョンを指定する
 ---------- 
 
@@ -46,6 +47,7 @@ TableServiceContextの、SendingRequestを引っ掛けて、ヘッダを変更�
     };
 `	    
 https://github.com/takekazuomi/was20110818/blob/master/upsert/ConsoleApplication1/Program.cs#L78
+
 
 
 要点２：If-Matchを付けない
@@ -80,6 +82,7 @@ Insert or Replaceが、従来のUpdate、Insert or Mergeが、従来のMergeに�
 ントです。指定しないと、If-Match ヘッダーが生成されずにupsert になります。
 
 
+
 要点３：ReplaceとMergeの切り替えはSaveChangesOption
 ---------- 
 
@@ -89,16 +92,22 @@ Mergeになるか、Replaceになるかは、SaveChangesOptionで決まります
 2. None で、Replace (NULLのプロパティも書きこまれます）
 
 
+
 その他
 ---------- 
+
 1. 開発ストレージは、2011-08-18 をサポートしていない。
 2. SDK1.5でもMicrosoft.WindowsAzure.StorageClient.dllは1.1.0.0のまま
 
+
+
 参考リンク
 ---------- 
+
 http://blogs.msdn.com/b/windowsazure/archive/2011/09/14/just-announced-build-new-windows-azure-toolkit-for-windows-8-windows-azure-sdk-1-5-geo-replication-for-azure-storage-and-more.aspx
 
 Insert Or Replace Entity http://msdn.microsoft.com/en-us/library/hh452242.aspx
+
 Insert Or Merge Entity http://msdn.microsoft.com/en-us/library/hh452241.aspx
 
 
