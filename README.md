@@ -1,4 +1,4 @@
-# Windows Azure Storage Insert or Replace/Merge sample code
+Windows Azure Storage Insert or Replace/Merge sample code
 ==========
 //BUILD と同時に公開になったWindows Azure Storage Insert or Replace/Merge のサンプルコードです。
 動作を見るために簡単に書いているので、変なコメントが残っています。
@@ -9,7 +9,7 @@
 例：
 `./ConsoleApplication1.exe <option> <TabelName> "DefaultEndpointsProtocol=http;AccountName=...;AccountKey=...` 
  
-### option の内容
+option の内容
 ----------
 
  1. -i 初期データを作る
@@ -17,7 +17,7 @@
  3. -ir Inset or Replaceを実行
  4. -im Inset or Mergeを実行
 
-### 実例
+実例
 ----------
 
 最初のデータを作って
@@ -29,7 +29,7 @@ Insert or Mergeを実行
 内容確認は、VSなどでやったほうが便利です。
 
 
-## 要点１：ヘッダーでバージョンを指定する
+要点１：ヘッダーでバージョンを指定する
 ---------- 
 
 SDK1.5に、同梱されているMicrosoft.WindowsAzure.StorageClient.dllを使っ
@@ -48,7 +48,7 @@ TableServiceContextの、SendingRequestを引っ掛けて、ヘッダを変更�
 https://github.com/takekazuomi/was20110818/blob/master/upsert/ConsoleApplication1/Program.cs#L78
 
 
-## 要点２：If-Matchを付けない
+要点２：If-Matchを付けない
 ---------- 
 
 upsert として提供されている機能は、従来のREST APIの口と同じです。
@@ -80,7 +80,7 @@ Insert or Replaceが、従来のUpdate、Insert or Mergeが、従来のMergeに�
 ントです。指定しないと、If-Match ヘッダーが生成されずにupsert になります。
 
 
-## 要点３：ReplaceとMergeの切り替えはSaveChangesOption
+要点３：ReplaceとMergeの切り替えはSaveChangesOption
 ---------- 
 
 Mergeになるか、Replaceになるかは、SaveChangesOptionで決まります。これは、従来から同じルールです。
@@ -89,12 +89,12 @@ Mergeになるか、Replaceになるかは、SaveChangesOptionで決まります
 2. None で、Replace (NULLのプロパティも書きこまれます）
 
 
-## その他
+その他
 ---------- 
 1. 開発ストレージは、2011-08-18 をサポートしていない。
 2. SDK1.5でもMicrosoft.WindowsAzure.StorageClient.dllは1.1.0.0のまま
 
-## 参考リンク
+参考リンク
 ---------- 
 http://blogs.msdn.com/b/windowsazure/archive/2011/09/14/just-announced-build-new-windows-azure-toolkit-for-windows-8-windows-azure-sdk-1-5-geo-replication-for-azure-storage-and-more.aspx
 
