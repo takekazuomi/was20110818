@@ -95,8 +95,8 @@ namespace ConsoleApplication1
 
             DumpContext("Dump TableServiceContext Before Save", context);
 
-//            context.SaveChangesWithRetries(SaveChangesOptions.Batch);
-            context.SaveChangesWithRetries(SaveChangesOptions.None);
+            var option = SaveChangesOptions.None | SaveChangesOptions.Batch;
+            context.SaveChangesWithRetries(option);
 
             DumpContext("Dump TableServiceContext After Save", context);
             
@@ -131,7 +131,7 @@ namespace ConsoleApplication1
             };
 
             // Insert Or Replace の場合は、MethodがPUT、SaveChangesOptions.ReplaceOnUpdateを指定するとPUTになる
-            var option = SaveChangesOptions.ReplaceOnUpdate; //  | SaveChangesOptions.Batch;
+            var option = SaveChangesOptions.ReplaceOnUpdate | SaveChangesOptions.Batch;
             context.SaveChangesWithRetries(option);
 
             DumpContext("Dump TableServiceContext", context);
@@ -169,7 +169,7 @@ namespace ConsoleApplication1
 
 
             // Insert Or Replace の場合は、MethodがMERGE、SaveChangesOptions.Noneを指定するとMERGEになる
-            var option = SaveChangesOptions.None; //  | SaveChangesOptions.Batch;
+            var option = SaveChangesOptions.None | SaveChangesOptions.Batch;
             context.SaveChangesWithRetries(option);
 
             //
@@ -193,7 +193,7 @@ namespace ConsoleApplication1
                 var tables = CloudStorageAccount.Parse(connection).CreateCloudTableClient();
 
                 // 
-                if (tables.CreateTableIfNotExist(tableName))
+                if (!String.IsNullOrEmpty(tableName) && tables.CreateTableIfNotExist(tableName))
                 {
                     logger.Debug("table created");
                 }

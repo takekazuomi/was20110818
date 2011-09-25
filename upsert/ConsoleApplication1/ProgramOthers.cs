@@ -31,7 +31,7 @@ namespace ConsoleApplication1
 
         void ListTable(CloudTableClient tables, string name)
         {
-            logger.Info("List Table");
+            logger.Info("Drop Table");
 
             foreach (var t in tables.ListTables(name))
             {
