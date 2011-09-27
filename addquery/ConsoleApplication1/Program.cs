@@ -67,6 +67,7 @@ namespace ConsoleApplication1
             var context = GetTableServiceContext(tables);
 
             foreach (var e in data)
+
             {
                 context.AddObject(tableName, e);
             }
