@@ -34,10 +34,10 @@ namespace ConsoleApplication1
     partial class Program
     {
         static readonly ILog logger = LogManager.GetCurrentClassLogger();
-        string ss = "\u3042\u3042\uFF01\uDBB8\uDF3A\u3055\u3063\u304D\u8D85\u5927\u304D\u306A\u30B4\u30AD\u30D6\u30EA\u304C\u90E8\u5C4B\u306B\u306F\u3057\u3063\u3066\u305F\u3088\u3001\u3069\u3046\u3057\u3087\u3046\uFF1F\uDBB8\uDF39\u79C1\u3053\u308C\u304C\u4E00\u756A\u6016\u3044\u3088\uFF01\u5BDD\u308C\u306A\u3044\u306A\u2026\u306A\u3093\u304B\u65B9\u6CD5\u304C\u3042\u308B\u304B\u306A\uDBB8\uDF3C\uDBB8\uDF41";
         EntityOne[] data = new[] {
-            new EntityOne("001","000","", "\uDBB8\uDF3A\uDBB8\uDF39\u2026\uDBB8\uDF3C\uDBB8\uDF41"),
-            new EntityOne("001","001","", "\u3042\u3042\uFF01\uDBB8\uDF3A\u3055\u3063\u304D\u8D85\u5927\u304D\u306A\u30B4\u30AD\u30D6\u30EA\u304C\u90E8\u5C4B\u306B\u306F\u3057\u3063\u3066\u305F\u3088\u3001\u3069\u3046\u3057\u3087\u3046\uFF1F\uDBB8\uDF39\u79C1\u3053\u308C\u304C\u4E00\u756A\u6016\u3044\u3088\uFF01\u5BDD\u308C\u306A\u3044\u306A\u2026\u306A\u3093\u304B\u65B9\u6CD5\u304C\u3042\u308B\u304B\u306A\uDBB8\uDF3C\uDBB8\uDF41"),
+            new EntityOne("001","000","", "\u3042\u3042\uFF01\uDBB8\uDF3A\u3055\u3063\u304D\u8D85\u5927\u304D\u306A\u30B4\u30AD\u30D6\u30EA\u304C\u90E8\u5C4B\u306B\u306F\u3057\u3063\u3066\u305F\u3088\u3001\u3069\u3046\u3057\u3087\u3046\uFF1F\uDBB8\uDF39\u79C1\u3053\u308C\u304C\u4E00\u756A\u6016\u3044\u3088\uFF01\u5BDD\u308C\u306A\u3044\u306A\u2026\u306A\u3093\u304B\u65B9\u6CD5\u304C\u3042\u308B\u304B\u306A\uDBB8\uDF3C\uDBB8\uDF41"),
+            new EntityOne("001","001","", "\uDBB8\uDF3A\uDBB8\uDF39\u2026\uDBB8\uDF3C\uDBB8\uDF41"),
+            new EntityOne("001","002","\uD867\uDE3D", "ホッケ"),
         };
 
         void DumpContext(string title, TableServiceContext context)
@@ -61,6 +61,23 @@ namespace ConsoleApplication1
 
             return context;
         }
+
+        void InsertOrMerge(CloudTableClient tables, string tableName)
+        {
+            var context = GetTableServiceContext(tables);
+
+            foreach (var e in data)
+
+            {
+                context.AttachTo(tableName, e);
+                context.UpdateObject(e);
+            }
+
+            var option = SaveChangesOptions.None; //  | SaveChangesOptions.Batch;
+            context.SaveChangesWithRetries(option);
+
+        }
+
 
         void AddObjects(CloudTableClient tables, string tableName)
         {
@@ -125,6 +142,10 @@ namespace ConsoleApplication1
 
                     case "-a":
                         program.AddObjects(tables, tableName);
+                        break;
+
+                    case "-im":
+                        program.InsertOrMerge(tables, tableName);
                         break;
                 }
             }
